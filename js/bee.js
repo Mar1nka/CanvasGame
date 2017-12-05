@@ -9,12 +9,12 @@ class Bee {
         this.color = '#0e671d';
 
         this.speedPerFrame = 4;
-        this.directionX;
-        this.directionY;
+        this.directionX  = 1;
+        this.directionY = 1;
         this.endX = 0;
         this.endY = 0;
-        this.stepX;
-        this.stepY;
+        this.stepX = 0;
+        this.stepY = 0;
     }
 
     setPosition (x, y) {

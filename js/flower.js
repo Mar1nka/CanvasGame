@@ -1,11 +1,11 @@
-class Hive {
-    constructor(context) {
+class Flower {
+    constructor (context) {
         this.context = context;
         this.x = 0;
         this.y = 0;
-        this.width = 100;
-        this.height = 150;
-        this.color = '#634c0b';
+        this.width = 50;
+        this.height = 50;
+        this.color = '';
     }
 
     setPosition (x, y) {
@@ -21,4 +21,4 @@ class Hive {
     }
 }
 
-window.Hive = Hive;
+window.Flower = Flower;

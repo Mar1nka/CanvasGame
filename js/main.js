@@ -1,10 +1,7 @@
-
-
-
 function createGoodFlowers (flowers, n) {
     for (let i = 0; i < n; i++) {
         let flower = new GoodFlower(context);
-        getPositionForFlower(flower);
+        setPositionForFlower(flower);
         flowers.push(flower);
     }
 }
@@ -12,19 +9,18 @@ function createGoodFlowers (flowers, n) {
 function createBadFlowers (flowers, n) {
     for (let i = 0; i < n; i++) {
         let badFlower = new BadFlower(context);
-        getPositionForFlower(badFlower);
+        setPositionForFlower(badFlower);
         flowers.push(badFlower);
     }
 }
 
-function getPositionForFlower(flower) {
+function setPositionForFlower(flower) {
     let x = getRandom(0, canvas.width - flower.width);
     let y = getRandom(0, canvas.height - flower.height);
     flower.setPosition(x, y);
 
-
     if(checkIntersectionObjects(flower, hive)) {
-        getPositionForFlower(flower);
+        setPositionForFlower(flower);
     }
 }
 
@@ -52,7 +48,7 @@ function updateGoodFlowers(flowers) {
     showCounterGoodFlowers(counterGoodFlowers);
 
     if (arrIntersectionGoodFlowers.length) {
-        // bee.stopMove();
+        checkGoodFlowers();
         deleteFlowers(arrIntersectionGoodFlowers, flowers);
     }
 }
@@ -63,6 +59,7 @@ function updateBadFlowers(badFlowers) {
     showCounterHealth(counterHealth);
 
     if (arrIntersectionBadFlowers.length) {
+        checkHealth();
         deleteFlowers(arrIntersectionBadFlowers, badFlowers);
     }
 }
@@ -89,22 +86,26 @@ function addFlowers () {
 }
 
 
+function destroy() {
+    clearInterval(intervalAddFlowers);
+    clearTimeout(timerMoveRightBear);
+    clearTimeout(timerMoveLeftBear);
+    timerId = null;
+    isGameOver = true;
+}
 
-function updateCounter() {
-    if(counterHealth === 0) {
-        clearInterval(intervalAddFlowers);
-        clearTimeout(timerMoveRightBear);
+
+function checkHealth() {
+    if (counterHealth === 0) {
         showCounterHealth('Game over');
-        timerId = null;
-        isGameOver = true;
-        return ;
-    } else if(counterGoodFlowers >= 50) {
-        clearInterval(intervalAddFlowers);
-        clearTimeout(timerMoveLeftBear);
+        destroy();
+    }
+}
+
+function checkGoodFlowers() {
+    if (counterGoodFlowers >= 50) {
         showCounterHealth('You are winner');
-        timerId = null;
-        isGameOver = true;
-        return ;
+        destroy();
     }
 }
 
@@ -121,11 +122,8 @@ function showCounterHealth(counter) {
 
 
 function render () {
-
     updateGoodFlowers(goodFlowers);
     updateBadFlowers(badFlowers);
-
-    updateCounter();
 
     updateBear(leftBear);
     updateBear(rightBear);
@@ -189,17 +187,21 @@ function updateBear(bear) {
     }
 
     if(checkIntersectionObjects(bear, bee)) {
-        metBearAndBee(bear);
+        meetBearAndBee(bear);
     }
 }
 
+//TODO move to Bear class
 function turnOtherWayBear(bear) {
     bear.setEndPosition(bear.finishPosX, bear.finishPosY);
     bear.directionX *= -1;
     bear.isChangeDirectionX = true;
+
     counterGoodFlowers = 0;
 }
 
+
+//TODO move to Bear class
 function moveBear(bear) {
     bear.setPosition(bear.startPosX, bear.startPosY);
     bear.speedPerFrame = bear.originalSpeedPerFrame;
@@ -209,8 +211,10 @@ function moveBear(bear) {
     bear.setEndPosition(bear.goalPosX, bear.goalPosY);
 }
 
-function metBearAndBee(bear) {
+function meetBearAndBee(bear) {
     bee.stopMove();
+
+    //TODO move to Bear class : method intersectionWithHeroHandler ()
     bear.speedPerFrame += 0.5 ;
 
     if(!bear.isChangeDirectionX && !bear.isIntersectionBee) {
@@ -238,77 +242,82 @@ function moveRightBear() {
     timerMoveRightBear = setTimeout(moveRightBear, milliseconds);
 }
 
-
-
-let canvas = document.querySelector('.play-area');
-canvas.style.background = 'lightgrey';
-
-canvas.width = 1000;
-canvas.height = 800;
-
-canvas.x = 0;
-canvas.y = 0;
-
-canvas.addEventListener('click', clickHandler);
-
-let context = canvas.getContext('2d');
-
-let hive = new Hive(context);
-hive.setPosition(canvas.width / 2 - hive.width / 2, canvas.height / 2 - hive.height / 2);
-hive.draw();
-
-let goodFlowers = [];
-let maxNumberGoodFlowers = 20;
-createGoodFlowers(goodFlowers, maxNumberGoodFlowers);
-drawFlowers(goodFlowers);
-
-let badFlowers = [];
-let maxNumberBadFlowers = (Math.floor(maxNumberGoodFlowers * 0.2));
-createBadFlowers(badFlowers, maxNumberBadFlowers);
-drawFlowers(badFlowers);
-
-let counterGoodFlowers = 0;
-let counterHealth = maxNumberBadFlowers;
-
-showCounterGoodFlowers(counterGoodFlowers);
-showCounterHealth(counterHealth);
-
-let bee = new Bee(canvas, context);
-bee.setPosition(canvas.width / 4 - bee.width / 2, canvas.height / 4 - bee.height / 2);
-bee.draw();
-
-let leftBear = new Bear(context);
-leftBear.setConstPos(
-    {
-        'startPosX': canvas.x - leftBear.width,
-        'startPosY': hive.y + hive.height - leftBear.height,
-        'goalPosX' : hive.x,
-        'goalPosY' : hive.y + hive.height - leftBear.height,
-        'finishPosX': canvas.x - 1.5 * leftBear.width,
-        'finishPosY': hive.y + hive.height - leftBear.height
-    });
-
-let rightBear = new Bear(context);
-rightBear.setConstPos(
-    {
-        'startPosX': canvas.width + rightBear.width ,
-        'startPosY': hive.y + hive.height - rightBear.height,
-        'goalPosX' : hive.x,
-        'goalPosY' : hive.y + hive.height - rightBear.height,
-        'finishPosX': canvas.width + 1.5 * rightBear.width ,
-        'finishPosY': hive.y + hive.height - rightBear.height
-    });
+//TODO make Main class and move all functions from above to methods of Main class
 
 
 
-let timerId = undefined;
-let canvasBoundingRect = canvas.getBoundingClientRect();
+//TODO move all logic from below to init() method of Main Class
 
-timerId = requestAnimationFrame(render);
+     let canvas = document.querySelector('.play-area');
+     canvas.style.background = 'lightgrey';
 
-let intervalAddFlowers = setInterval(addFlowers, 500);
-let timerMoveLeftBear = setTimeout(moveLeftBear, 2000);
-let timerMoveRightBear = setTimeout(moveRightBear, 8000);
+     canvas.width = 1000;
+     canvas.height = 800;
 
-let isGameOver = false;
+     canvas.x = 0;
+     canvas.y = 0;
+
+     canvas.addEventListener('click', clickHandler);
+
+     let context = canvas.getContext('2d');
+
+     let hive = new Hive(context);
+     hive.setPosition(canvas.width / 2 - hive.width / 2, canvas.height / 2 - hive.height / 2);
+     hive.draw();
+
+     let goodFlowers = [];
+     let maxNumberGoodFlowers = 20;
+     createGoodFlowers(goodFlowers, maxNumberGoodFlowers);
+     drawFlowers(goodFlowers);
+
+     let badFlowers = [];
+     let maxNumberBadFlowers = (Math.floor(maxNumberGoodFlowers * 0.2));
+     createBadFlowers(badFlowers, maxNumberBadFlowers);
+     drawFlowers(badFlowers);
+
+     let counterGoodFlowers = 0;
+     let counterHealth = maxNumberBadFlowers;
+
+     showCounterGoodFlowers(counterGoodFlowers);
+     showCounterHealth(counterHealth);
+
+     let bee = new Bee(canvas, context);
+     bee.setPosition(canvas.width / 4 - bee.width / 2, canvas.height / 4 - bee.height / 2);
+     bee.draw();
+
+     let leftBear = new Bear(context);
+     leftBear.setConstPos(
+         {
+             'startPosX': canvas.x - leftBear.width,
+             'startPosY': hive.y + hive.height - leftBear.height,
+             'goalPosX' : hive.x,
+             'goalPosY' : hive.y + hive.height - leftBear.height,
+             'finishPosX': canvas.x - 1.5 * leftBear.width,
+             'finishPosY': hive.y + hive.height - leftBear.height
+         });
+
+     let rightBear = new Bear(context);
+     rightBear.setConstPos(
+         {
+             'startPosX': canvas.width + rightBear.width ,
+             'startPosY': hive.y + hive.height - rightBear.height,
+             'goalPosX' : hive.x,
+             'goalPosY' : hive.y + hive.height - rightBear.height,
+             'finishPosX': canvas.width + 1.5 * rightBear.width ,
+             'finishPosY': hive.y + hive.height - rightBear.height
+         });
+
+
+
+     let timerId = undefined;
+     let canvasBoundingRect = canvas.getBoundingClientRect();
+
+     timerId = requestAnimationFrame(render);
+
+     let intervalAddFlowers = setInterval(addFlowers, 500);
+     let timerMoveLeftBear = setTimeout(moveLeftBear, 2000);
+     let timerMoveRightBear = setTimeout(moveRightBear, 8000);
+
+     let isGameOver = false;
+
 
