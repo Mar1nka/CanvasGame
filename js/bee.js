@@ -1,6 +1,5 @@
 class Bee {
-    constructor (canvas, context) {
-        this.canvas = canvas;
+    constructor (context) {
         this.context = context;
         this.x = 0;
         this.y = 0;
@@ -80,8 +79,8 @@ class Bee {
     }
 
     stopMove() {
-        bee.endX = bee.x;
-        bee.endY = bee.y;
+        this.endX = this.x;
+        this.endY = this.y;
     }
 
     move () {

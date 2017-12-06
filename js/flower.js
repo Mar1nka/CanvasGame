@@ -19,6 +19,10 @@ class Flower {
         this.context.fillRect(this.x, this.y, this.width, this.height);
         this.context.stroke();
     }
+
+    delete () {
+
+    }
 }
 
 window.Flower = Flower;

@@ -113,6 +113,34 @@ class Bear {
     }
 
 
+    turnOtherWay() {
+        this.setEndPosition(this.finishPosX, this.finishPosY);
+        this.directionX *= -1;
+        this.isChangeDirectionX = true;
+    }
+
+    meetBee() {
+        this.speedPerFrame += 0.5 ;
+
+        if(!this.isChangeDirectionX && !this.isIntersectionBee) {
+            this.setEndPosition(this.finishPosX, this.finishPosY);
+            this.directionX *= -1;
+            this.isChangeDirectionX = true;
+        }
+
+        this.isIntersectionBee = true;
+    }
+
+    setToInitialState() {
+        this.setPosition(this.startPosX, this.startPosY);
+        this.speedPerFrame = this.originalSpeedPerFrame;
+        this.isChangeDirectionX  = false;
+        this.isIntersectionBee = false;
+        this.draw();
+        this.setEndPosition(this.goalPosX, this.goalPosY);
+    }
+
+
 
     draw () {
         this.context.beginPath();
