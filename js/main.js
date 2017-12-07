@@ -304,6 +304,9 @@ class Main {
         this.leftBear;
         this.rightBear;
 
+        //+
+        this.beeEater;
+
         this.timerId = undefined;
         this.canvasBoundingRect;
 
@@ -336,6 +339,9 @@ class Main {
         this.initFlowers();
         this.initBee();
         this.initBears();
+
+        //+
+        this.initBeeEater();
 
         this.showCounterGoodFlowers(this.counterGoodFlowers);
         this.showCounterHealth(this.counterHealth);
@@ -409,6 +415,15 @@ class Main {
             });
     }
 
+    initBeeEater() {
+        this.beeEater = new BeeEater(this.context);
+        this.beeEater.setPosition(this.canvas.width / 2 , this.canvas.height  - this.beeEater.height );
+        this.beeEater.draw();
+    }
+
+
+
+
     getRandom(min, max) {
         return Math.floor(Math.random() * (max - min)) + min;
     }
@@ -458,10 +473,12 @@ class Main {
         this.updateBear(this.leftBear);
         this.updateBear(this.rightBear);
 
+        this.updateBeeEater();
+
         this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
         this.drawFlowers(this.goodFlowers);
-        this.drawFlowers(this.badFlowers)
+        this.drawFlowers(this.badFlowers);
 
         this.hive.draw();
 
@@ -477,6 +494,10 @@ class Main {
 
         this.bee.move();
         this.bee.draw();
+
+        //+
+        this.beeEater.draw();
+
 
         if (!this.isGameOver) {
             requestAnimationFrame(this.renderBind);
@@ -624,6 +645,19 @@ class Main {
         clearTimeout(this.timerMoveRightBear);
         let milliseconds = this.getRandom(20000, 30000);
         this.timerMoveRightBear = setTimeout(this.moveRightBearsCyclicallyBind, milliseconds);
+    }
+
+    // beeEater
+
+    updateBeeEater() {
+        this.beeEater.checkCollisionBorderCanvas(this.canvas.width, this.canvas.height, this.canvas.x, this.canvas.y );
+
+        if(this.checkIntersectionObjects(this.beeEater, this.bee)) {
+            this.bee.stopMove();
+            this.counterHealth -= 1;
+            this.showCounterHealth(this.counterHealth);
+            this.checkHealth();
+        }
     }
 
 }
