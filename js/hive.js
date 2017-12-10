@@ -6,6 +6,9 @@ class Hive {
         this.width = 100;
         this.height = 150;
         this.color = '#634c0b';
+
+        this.image = new Image();
+        this.image.src = 'images/hive.png';
     }
 
     setPosition (x, y) {
@@ -14,10 +17,7 @@ class Hive {
     }
 
     draw () {
-        this.context.beginPath();
-        this.context.fillStyle = this.color;
-        this.context.fillRect(this.x, this.y, this.width, this.height);
-        this.context.stroke();
+        this.context.drawImage(this.image, this.x, this.y, this.width, this.height);
     }
 }
 
