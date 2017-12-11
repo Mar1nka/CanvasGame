@@ -3,8 +3,8 @@ class BeeEater {
         this.context = context;
         this.x = 0;
         this.y = 0;
-        this.width = 100;
-        this.height = 100;
+        this.width = 150;
+        this.height = 150;
 
         this.endX = 0;
         this.endY = 0;

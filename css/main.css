@@ -41,7 +41,7 @@ body {
     background-size: auto 80px;
 }
 
-.flower {
+.scores {
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -51,12 +51,12 @@ body {
     background-size: auto 60px;
 }
 
-.honeyImg {
-    width: auto;
-    height: 40px;
+.scores-icon {
+    width: 48px;
+    height: 44px;
 }
 
-.counterGoodFlowers {
+.scores-value {
     padding: 10px 5px;
     color: black;
     font-size: 2rem;
@@ -72,13 +72,13 @@ body {
     background-size: auto 60px;
 }
 
-.counterHealth {
+.health-value {
     padding: 10px 5px;
     color: black;
     font-size: 2rem;
 }
 
-.healthImg {
-    width: auto;
+.health-icon {
+    width: 40px;
     height: 40px;
 }

@@ -14,17 +14,15 @@ class Main {
         this.badFlowers = [];
         this.maxNumberBadFlowers = (Math.floor(this.maxNumberGoodFlowers * 0.2));
 
-        this.counterGoodFlowers = 0;
-        this.counterHealth = this.maxNumberBadFlowers;
-
+        this.scores = 0;
+        this.currentDifficulty = 0;
+        this.health = this.maxNumberBadFlowers;
 
         this.requestAnimationId = undefined;
-
-        this.intervalAddFlowers = undefined;
-        this.timerMoveLeftBear = undefined;
-        this.timerMoveRightBear = undefined;
-
-        this.intervalChangePosBadFlowers = undefined;
+        this.addFlowersIntervalId = undefined;
+        this.moveLeftBearTimerId = undefined;
+        this.moveRightBearTimerId = undefined;
+        this.changeBadFlowersPositionIntervalId = undefined;
 
         this.isGameOver = false;
 
@@ -32,15 +30,15 @@ class Main {
         this.addFlowersBind = this.addFlowers.bind(this);
         this.moveLeftBearsCyclicallyBind = this.moveLeftBearsCyclically.bind(this);
         this.moveRightBearsCyclicallyBind = this.moveRightBearsCyclically.bind(this);
-
-        //+
         this.changePosBadFlowersBind = this.changeBadFlowersPositions.bind(this);
 
-        this.currentObj = [this.goodFlowers];
-        this.difficultyScores = [10, 20, 30, 50];
-        this.currentDifficulty = this.difficultyScores[0];
-
         this.init();
+
+        this.sceneObjects = [
+            this.hive,
+            this.bee,
+            this.goodFlowers
+        ];
 
         window.addEventListener('resize', () => {
             this.canvas.width = document.body.offsetWidth;
@@ -52,24 +50,14 @@ class Main {
         this.initCanvas();
         this.initHive();
         this.initGoodFlowers();
-        // this.initBadFlowers();
         this.initBee();
-        // this.initBears();
 
-        //+
-        // this.initBeeEater();
-
-        this.showGoodFlowersCcounter(this.counterGoodFlowers);
-        this.showHealthCounter(this.counterHealth);
+        this.showScores(this.scores);
+        this.showHealth(this.health);
 
         this.requestAnimationId = requestAnimationFrame(this.renderBind);
 
-        this.intervalAddFlowers = setInterval(this.addFlowersBind, 500);
-        // this.timerMoveLeftBear = setTimeout(this.moveLeftBearsCyclicallyBind, 2000);
-        // this.timerMoveRightBear = setTimeout(this.moveRightBearsCyclicallyBind, 8000);
-
-        //+
-        // this.intervalChangePosBadFlowers = setInterval(this.changePosBadFlowersBind, 5000);
+        this.addFlowersIntervalId = setInterval(this.addFlowersBind, 500);
     }
 
     initCanvas () {
@@ -77,7 +65,6 @@ class Main {
         this.context = this.canvas.getContext('2d');
 
         this.canvas.style.background = '#7DC24B';
-
         this.canvas.width = document.body.offsetWidth;
         this.canvas.height = document.body.offsetHeight - 80;
 
@@ -94,14 +81,14 @@ class Main {
     }
 
     initGoodFlowers () {
-        this.createFlowers(GoodFlower, this.goodFlowers, this.maxNumberGoodFlowers);
+        this.createFlowers(this.maxNumberGoodFlowers, this.goodFlowers, 'good');
         this.drawFlowers(this.goodFlowers);
     }
 
     initBadFlowers () {
-        this.createFlowers(BadFlower, this.badFlowers, this.maxNumberBadFlowers);
+        this.createFlowers(this.maxNumberBadFlowers, this.badFlowers, 'bad');
         this.drawFlowers(this.badFlowers);
-        this.intervalChangePosBadFlowers = setInterval(this.changePosBadFlowersBind, 5000);
+        this.changeBadFlowersPositionIntervalId = setInterval(this.changePosBadFlowersBind, 5000);
     }
 
     initBee () {
@@ -133,8 +120,8 @@ class Main {
                 'finishPosY': this.hive.y + this.hive.height - this.rightBear.height
             });
 
-        this.timerMoveLeftBear = setTimeout(this.moveLeftBearsCyclicallyBind, 0);
-        this.timerMoveRightBear = setTimeout(this.moveRightBearsCyclicallyBind, 0);
+        this.moveLeftBearTimerId = setTimeout(this.moveLeftBearsCyclicallyBind, 0);
+        this.moveRightBearTimerId = setTimeout(this.moveRightBearsCyclicallyBind, 0);
     }
 
     initBeeEater () {
@@ -155,131 +142,146 @@ class Main {
             obj1.height + obj1.y > obj2.y);
     }
 
-    showGoodFlowersCcounter (counter) {
-        let element = document.querySelector('.counterGoodFlowers');
+    showScores (counter) {
+        let element = document.querySelector('.scores-value');
         element.innerHTML = counter;
     }
 
-    showHealthCounter (counter) {
-        let element = document.querySelector('.counterHealth');
+    showHealth (counter) {
+        let element = document.querySelector('.health-value');
         element.innerHTML = counter;
+    }
+
+    getDifficulty () {
+        let difficulty = 0;
+
+        if (this.scores >= 10 && this.scores < 20) {
+            difficulty = 1;
+        } else if (this.scores >= 20 && this.scores < 30) {
+            difficulty = 2;
+        } else if (this.scores >= 30 && this.scores < 50) {
+            difficulty = 3;
+        } else if (this.scores >= 50) {
+            difficulty = 4;
+        }
+
+        if (difficulty < this.currentDifficulty) {
+            difficulty = this.currentDifficulty;
+        }
+
+        return difficulty;
+    }
+
+    checkGameStage () {
+        switch (this.currentDifficulty) {
+        case 1:
+            this.initBadFlowers()
+            this.sceneObjects.push(this.badFlowers);
+            break;
+        case 2:
+            this.initBears();
+            this.sceneObjects.push(this.leftBear);
+            this.sceneObjects.push(this.rightBear);
+            break;
+        case 3:
+            this.initBeeEater();
+            this.sceneObjects.push(this.beeEater);
+            break;
+        case 4:
+            this.showHealth('You are winner');
+            this.destroy();
+            break;
+        }
     }
 
     render () {
-
-        for(let i = 0; i < this.currentObj.length; i++) {
-            this.updateObj(this.currentObj[i]);
+        for (let i = 0; i < this.sceneObjects.length; i++) {
+            this.updateObj(this.sceneObjects[i]);
         }
-
-        // this.updateGoodFlowers(this.goodFlowers);
-        // this.updateBadFlowers(this.badFlowers);
-        //
-        // this.updateBear(this.leftBear);
-        // this.updateBear(this.rightBear);
-        //
-        // this.updateBeeEater();
 
         this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
-        //this.context.drawImage(this.rightMovingImage, 0, 0, this.canvas.width, this.canvas.height);
-
-        for(let i = 0; i < this.currentObj.length; i++) {
-            this.drawObj(this.currentObj[i]);
+        for (let i = 0; i < this.sceneObjects.length; i++) {
+            this.drawObj(this.sceneObjects[i]);
         }
 
-
-        // this.drawFlowers(this.goodFlowers);
-        // this.drawFlowers(this.badFlowers);
-
         this.hive.draw();
-
-        // one function for bears
-
-        // this.leftBear.determineSteps();
-        // this.leftBear.move();
-        // this.leftBear.draw();
-        //
-        // this.rightBear.determineSteps();
-        // this.rightBear.move();
-        // this.rightBear.draw();
-
         this.bee.move();
         this.bee.draw();
 
-        //+
-        // this.beeEater.draw();
-
-        if(!this.isGameOver) {
+        if (!this.isGameOver) {
             this.requestAnimationId = requestAnimationFrame(this.renderBind);
         }
     }
 
-    updateObj(obj) {
-
+    updateObj (obj) {
         switch (obj) {
-            case this.goodFlowers:
-                this.updateGoodFlowers(this.goodFlowers);
-                break;
-            case this.leftBear:
-                this.updateBear(this.leftBear);
-                break;
-            case this.rightBear:
-                this.updateBear(this.rightBear);
-                break;
-            case this.badFlowers:
-                this.updateBadFlowers(this.badFlowers);
-                break;
-            case this.beeEater:
-                this.updateBeeEater();
-                break;
+        case this.goodFlowers:
+            this.updateScores(this.goodFlowers);
+            break;
+        case this.leftBear:
+            this.updateBear(this.leftBear);
+            break;
+        case this.rightBear:
+            this.updateBear(this.rightBear);
+            break;
+        case this.badFlowers:
+            this.updateBadFlowers(this.badFlowers);
+            break;
+        case this.beeEater:
+            this.updateBeeEater();
+            break;
         }
-
-        // if(obj === this.goodFlowers) {
-        //     this.updateGoodFlowers(this.goodFlowers);
-        // }
     }
-    
-    drawObj(obj) {
+
+    drawObj (obj) {
         switch (obj) {
-            case this.goodFlowers:
-                this.drawFlowers(this.goodFlowers);
-                break;
-            case this.leftBear:
-                this.leftBear.determineSteps();
-                this.leftBear.move();
-                this.leftBear.draw();
-                break;
-            case this.rightBear:
-                this.rightBear.determineSteps();
-                this.rightBear.move();
-                this.rightBear.draw();
-                break;
-            case this.badFlowers:
-                this.drawFlowers(this.badFlowers);
-                break;
-            case this.beeEater:
-                this.beeEater.move();
-                this.beeEater.draw();
-                break;
+        case this.goodFlowers:
+            this.drawFlowers(this.goodFlowers);
+            break;
+        case this.leftBear:
+            this.leftBear.determineSteps();
+            this.leftBear.move();
+            this.leftBear.draw();
+            break;
+        case this.rightBear:
+            this.rightBear.determineSteps();
+            this.rightBear.move();
+            this.rightBear.draw();
+            break;
+        case this.badFlowers:
+            this.drawFlowers(this.badFlowers);
+            break;
+        case this.beeEater:
+            this.beeEater.move();
+            this.beeEater.draw();
+            break;
         }
     }
 
 
     // flowers
+    createFlowers (number, flowers, type) {
+        let constructors = {
+            'good': GoodFlower,
+            'bad': BadFlower
+        };
 
-    createFlowers (ClassFlower, flowers, n) {
-        for (let i = 0; i < n; i++) {
-            let flower = new ClassFlower(this.context);
+        for (let i = 0; i < number; i++) {
+            let flower = new constructors[type](this.context);
             this.setFlowersPosition(flower);
             //+
             flower.blossom();
             flowers.push(flower);
         }
+
+        return flowers;
     }
 
     setFlowersPosition (flower) {
         let x = this.getRandom(0, this.canvas.width - flower.width);
         let y = this.getRandom(0, this.canvas.height - flower.height);
+
         flower.setPosition(x, y);
 
         if (this.checkIntersectionObjects(flower, this.hive)) {
@@ -296,7 +298,7 @@ class Main {
     addFlowers () {
         if (this.goodFlowers.length < (this.maxNumberGoodFlowers * 0.8)) {
             let numberFlowers = 1;
-            this.createFlowers(GoodFlower, this.goodFlowers, numberFlowers);
+            this.createFlowers(numberFlowers, this.goodFlowers, 'good');
         }
     }
 
@@ -309,21 +311,25 @@ class Main {
         }
     }
 
-    updateGoodFlowers (flowers) {
+    updateScores (flowers) {
         let arrIntersectionGoodFlowers = this.checkIntersectionObjectsBeeFlowers(flowers);
-        this.counterGoodFlowers += arrIntersectionGoodFlowers.length;
-        this.showGoodFlowersCcounter(this.counterGoodFlowers);
+
+        this.scores += arrIntersectionGoodFlowers.length;
+        this.showScores(this.scores);
 
         if (arrIntersectionGoodFlowers.length) {
-            this.checkGoodFlowers();
+            if (this.getDifficulty() > this.currentDifficulty) {
+                this.currentDifficulty = this.getDifficulty();
+                this.checkGameStage();
+            }
             this.deleteFlowers(arrIntersectionGoodFlowers, flowers);
         }
     }
 
     updateBadFlowers (badFlowers) {
         let arrIntersectionBadFlowers = this.checkIntersectionObjectsBeeFlowers(badFlowers);
-        this.counterHealth -= arrIntersectionBadFlowers.length;
-        this.showHealthCounter(this.counterHealth);
+        this.health -= arrIntersectionBadFlowers.length;
+        this.showHealth(this.health);
 
         if (arrIntersectionBadFlowers.length) {
             this.checkHealth();
@@ -345,55 +351,18 @@ class Main {
         return arrIntersectionObjects;
     }
 
-    checkGoodFlowers () {
-
-        if(this.counterGoodFlowers >= this.currentDifficulty) {
-            let index = this.difficultyScores.indexOf(this.currentDifficulty);
-
-            switch (index) {
-                case 0:
-                    this.initBadFlowers()
-                    this.currentObj.push(this.badFlowers);
-                    break;
-                case 1:
-                    this.initBears();
-                    this.currentObj.push(this.leftBear);
-                    this.currentObj.push(this.rightBear);
-                    break;
-                case 2:
-                    this.initBeeEater();
-                    this.currentObj.push(this.beeEater);
-                    break;
-                case 3:
-                    this.showHealthCounter('You are winner');
-                    this.destroy();
-                    break;
-
-            }
-
-            index++;
-            this.currentDifficulty = this.difficultyScores[index];
-        }
-
-
-
-        // if (this.counterGoodFlowers >= 50) {
-        //     this.showHealthCounter('You are winner');
-        //     this.destroy();
-        // }
-    }
 
     checkHealth () {
-        if (this.counterHealth <= 0) {
-            this.showHealthCounter('Game over');
+        if (this.health <= 0) {
+            this.showHealth('Game over');
             this.destroy();
         }
     }
 
     destroy () {
-        clearInterval(this.intervalAddFlowers);
-        clearTimeout(this.timerMoveRightBear);
-        clearTimeout(this.timerMoveLeftBear);
+        clearInterval(this.addFlowersIntervalId);
+        clearTimeout(this.moveRightBearTimerId);
+        clearTimeout(this.moveLeftBearTimerId);
         cancelAnimationFrame(this.requestAnimationId);
         this.isGameOver = true;
     }
@@ -402,18 +371,17 @@ class Main {
     deleteFlowers (flowersForDelete, flowers) {
         while (flowersForDelete.length) {
             let index = flowers.indexOf(flowersForDelete[0]);
-             flowersForDelete[0].fadeAway();
-             flowers.splice(index, 1);
+            flowersForDelete[0].fadeAway();
+            flowers.splice(index, 1);
             flowersForDelete.shift();
         }
     }
 
     // bears
-
     updateBear (bear) {
         if (this.checkIntersectionObjects(bear, this.hive)) {
             bear.turnOtherWay();
-            this.counterGoodFlowers = 0;
+            this.scores = 0;
         }
 
         if (this.checkIntersectionObjects(bear, this.bee)) {
@@ -429,28 +397,27 @@ class Main {
     moveLeftBearsCyclically () {
         this.leftBear.setToInitialState();
 
-        clearTimeout(this.timerMoveLeftBear);
+        clearTimeout(this.moveLeftBearTimerId);
         let milliseconds = this.getRandom(20000, 30000);
-        this.timerMoveLeftBear = setTimeout(this.moveLeftBearsCyclicallyBind, milliseconds);
+        this.moveLeftBearTimerId = setTimeout(this.moveLeftBearsCyclicallyBind, milliseconds);
     }
 
     moveRightBearsCyclically () {
         this.rightBear.setToInitialState();
 
-        clearTimeout(this.timerMoveRightBear);
+        clearTimeout(this.moveRightBearTimerId);
         let milliseconds = this.getRandom(20000, 30000);
-        this.timerMoveRightBear = setTimeout(this.moveRightBearsCyclicallyBind, milliseconds);
+        this.moveRightBearTimerId = setTimeout(this.moveRightBearsCyclicallyBind, milliseconds);
     }
 
     // beeEater
-
     updateBeeEater () {
         this.beeEater.checkCollisionBorderCanvas(this.canvas.width, this.canvas.height, this.canvas.x, this.canvas.y);
 
         if (this.checkIntersectionObjects(this.beeEater, this.bee)) {
             this.bee.stopMove();
-            this.counterHealth = 0;
-            this.showHealthCounter(this.counterHealth);
+            this.health = 0;
+            this.showHealth(this.health);
             this.checkHealth();
         }
     }

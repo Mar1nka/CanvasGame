@@ -3,7 +3,7 @@ class Hive {
         this.context = context;
         this.x = 0;
         this.y = 0;
-        this.width = 100;
+        this.width = 135;
         this.height = 150;
         this.color = '#634c0b';
 
