@@ -5,7 +5,6 @@ class Bear {
         this.y = 0;
         this.width = 150;
         this.height = 150;
-        this.color = '#904B15';
 
         this.currentImageIndex = 0;
         this.imageFrameNumber = 10;
@@ -16,8 +15,8 @@ class Bear {
         this.croppedWidth = 344;
         this.croppedHeight = 388;
 
-        this.originalSpeedPerFrame = 1;
-        this.speedPerFrame = 1;
+        this.originalSpeedPerFrame = 2;
+        this.speedPerFrame = 2;
         this.directionX = 0;
         this.directionY = 0;
         this.endX = 0;
@@ -91,6 +90,8 @@ class Bear {
         this.finishPosX = objPos.finishPosX;
         this.finishPosY = objPos.finishPosY;
 
+        this.x = this.startPosX;
+        this.y = this.startPosY;
     }
 
     setPosition (x, y) {

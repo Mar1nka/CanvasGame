@@ -17,6 +17,9 @@ class Flower {
 
         this.croppedWidth = 140;
         this.croppedHeight = 140;
+
+        this.isBlossom = true;
+        this.isFadeAway = false;
     }
 
     setPosition (x, y) {
@@ -30,8 +33,20 @@ class Flower {
         if(this.frameCounter > this.frameDelay) {
             this.frameCounter = 0;
 
-            if(this.currentImageIndex < this.imageFrameNumber - 1) {
-                this.currentImageIndex += 1;
+            if(this.isBlossom) {
+                if (this.currentImageIndex < this.imageFrameNumber - 1) {
+                    this.currentImageIndex += 1;
+                } else {
+                    this.isBlossom = false;
+                }
+            }
+
+            if(this.isFadeAway) {
+                if (this.currentImageIndex >= 0) {
+                    this.currentImageIndex -= 1;
+                } else {
+                    this.frameCounter = false;
+                }
             }
         }
 
@@ -48,9 +63,19 @@ class Flower {
         );
     }
 
-    delete () {
-
+    blossom() {
+        this.isBlossom = true;
+        this.currentImageIndex = 0;
+        this.frameCounter = 0;
     }
+
+    fadeAway() {
+        this.isFadeAway = true;
+        this.currentImageIndex = this.imageFrameNumber;
+        this.frameCounter = 0;
+        this.frameDelay = 0;
+    }
+
 }
 
 window.Flower = Flower;

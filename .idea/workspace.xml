@@ -2,52 +2,37 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f1307d22-de05-4e23-af19-1496a4bce006" name="Default" comment="update main.js. Now all Bee logic in the Bee class">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/badFlower.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/badFlower.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/badFlower1.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/badFlower2.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/badFlower3.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/badFlower4.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/badFlower5.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/badFlower6.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/bear-fat.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/bear-run.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/bear-run.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/bear.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/bear2.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/bee.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/bee2.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/field.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/field1.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/field3.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/field4.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/field5.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/flower1.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/flower2.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/goodFlower.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/goodFlower.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/goodFlower6.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/hive.jpeg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/hive.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/hqdefault.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/leftMovingBear.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/leftMovingBee.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/rightMovingBear.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/rightMovingBee.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/js/bad-flower.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/js/good-flower.js" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/badFlower.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/goodFlower.js" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/bird1.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/bird3.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/board1.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/fence3.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/heart1.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/heart2.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/heart3.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/heart4.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/heart5.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/honeyPot.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/honeyPot2.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/leftMovingBeeEater.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/rightMovingBeeEater.png" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/images/badFlower1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/images/badFlower2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/images/badFlower3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/images/badFlower4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/images/badFlower5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/images/badFlower6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/images/bear-fat.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/images/bee.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/images/flower1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/images/goodFlower6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/images/hqdefault.jpg" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/main.css" afterPath="$PROJECT_DIR$/css/main.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/bear.js" afterPath="$PROJECT_DIR$/js/bear.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/bee.js" afterPath="$PROJECT_DIR$/js/bee.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/bee-eater.js" afterPath="$PROJECT_DIR$/js/bee-eater.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/flower.js" afterPath="$PROJECT_DIR$/js/flower.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/hive.js" afterPath="$PROJECT_DIR$/js/hive.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/main.js" afterPath="$PROJECT_DIR$/js/main.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/js/beeEater.js" afterPath="$PROJECT_DIR$/js/bee-eater.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -61,51 +46,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="main.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3800">
-              <caret line="190" column="30" lean-forward="false" selection-start-line="190" selection-start-column="30" selection-end-line="190" selection-end-column="30" />
+            <state relative-caret-position="204">
+              <caret line="355" column="58" lean-forward="false" selection-start-line="355" selection-start-column="58" selection-end-line="355" selection-end-column="58" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="flower.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/js/flower.js">
+      <file leaf-file-name="bee-eater.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/bee-eater.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="465">
-              <caret line="29" column="23" lean-forward="true" selection-start-line="29" selection-start-column="23" selection-end-line="29" selection-end-column="23" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="good-flower.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/good-flower.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="6" column="8" lean-forward="false" selection-start-line="6" selection-start-column="8" selection-end-line="6" selection-end-column="49" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="bad-flower.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/bad-flower.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="40">
-              <caret line="2" column="23" lean-forward="true" selection-start-line="2" selection-start-column="23" selection-end-line="2" selection-end-column="23" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="hive.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/hive.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="200">
-              <caret line="10" column="43" lean-forward="false" selection-start-line="10" selection-start-column="43" selection-end-line="10" selection-end-column="43" />
+            <state relative-caret-position="289">
+              <caret line="23" column="27" lean-forward="false" selection-start-line="23" selection-start-column="27" selection-end-line="23" selection-end-column="27" />
               <folding />
             </state>
           </provider>
@@ -114,11 +69,41 @@
       <file leaf-file-name="bee.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/bee.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1900">
-              <caret line="95" column="10" lean-forward="false" selection-start-line="73" selection-start-column="8" selection-end-line="95" selection-end-column="10" />
+            <state relative-caret-position="2091">
+              <caret line="123" column="0" lean-forward="false" selection-start-line="123" selection-start-column="0" selection-end-line="123" selection-end-column="0" />
               <folding>
-                <marker date="1512927692349" expanded="true" signature="4200:4209" ph="{...}" />
+                <marker date="1512978558302" expanded="true" signature="1639:1657" ph="{...}" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="bad-flower.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/bad-flower.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="34">
+              <caret line="2" column="23" lean-forward="false" selection-start-line="2" selection-start-column="23" selection-end-line="2" selection-end-column="23" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="flower.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/flower.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1207">
+              <caret line="71" column="12" lean-forward="false" selection-start-line="71" selection-start-column="4" selection-end-line="71" selection-end-column="12" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="good-flower.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/good-flower.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="102">
+              <caret line="6" column="8" lean-forward="false" selection-start-line="6" selection-start-column="8" selection-end-line="6" selection-end-column="49" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -126,8 +111,30 @@
       <file leaf-file-name="bear.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/bear.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="320">
-              <caret line="16" column="32" lean-forward="false" selection-start-line="16" selection-start-column="32" selection-end-line="16" selection-end-column="32" />
+            <state relative-caret-position="442">
+              <caret line="26" column="21" lean-forward="true" selection-start-line="26" selection-start-column="21" selection-end-line="26" selection-end-column="30" />
+              <folding>
+                <marker date="1513000256325" expanded="true" signature="1169:1187" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="hive.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/hive.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="221">
+              <caret line="13" column="24" lean-forward="false" selection-start-line="13" selection-start-column="24" selection-end-line="13" selection-end-column="24" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="323">
+              <caret line="19" column="53" lean-forward="false" selection-start-line="19" selection-start-column="53" selection-end-line="19" selection-end-column="53" />
               <folding />
             </state>
           </provider>
@@ -136,24 +143,10 @@
       <file leaf-file-name="main.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/css/main.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="920">
-              <caret line="46" column="13" lean-forward="false" selection-start-line="46" selection-start-column="13" selection-end-line="46" selection-end-column="13" />
+            <state relative-caret-position="1173">
+              <caret line="69" column="17" lean-forward="false" selection-start-line="69" selection-start-column="17" selection-end-line="69" selection-end-column="17" />
               <folding />
             </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="bear-run.gif" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/images/bear-run.gif">
-          <provider selected="true" editor-type-id="images">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="bear-run.png" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/images/bear-run.png">
-          <provider selected="true" editor-type-id="images">
-            <state />
           </provider>
         </entry>
       </file>
@@ -170,12 +163,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>drawImage</find>
-      <find>initca</find>
-      <find>draw</find>
-      <find>setFlowersPosition</find>
-      <find>changeBadFlowersPositions</find>
-      <find>render</find>
       <find>click</find>
       <find>keyUpHandler</find>
       <find>clickHandlerBind</find>
@@ -200,6 +187,12 @@
       <find>bee.se</find>
       <find>imageFrameNumber</find>
       <find>dra</find>
+      <find>crea</find>
+      <find>changePosBadFlowers</find>
+      <find>fadeAway</find>
+      <find>this.beeEater</find>
+      <find>Direction</find>
+      <find>directionX</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -216,17 +209,17 @@
         <option value="$PROJECT_DIR$/js/goodFlower.js" />
         <option value="$PROJECT_DIR$/js/badFlower.js" />
         <option value="$PROJECT_DIR$/js/beeEater.js" />
-        <option value="$PROJECT_DIR$/index.html" />
-        <option value="$PROJECT_DIR$/js/bee-eater.js" />
-        <option value="$PROJECT_DIR$/css/main.css" />
         <option value="$PROJECT_DIR$/README.md" />
-        <option value="$PROJECT_DIR$/js/bee.js" />
-        <option value="$PROJECT_DIR$/js/bear.js" />
-        <option value="$PROJECT_DIR$/js/main.js" />
-        <option value="$PROJECT_DIR$/js/hive.js" />
         <option value="$PROJECT_DIR$/js/good-flower.js" />
-        <option value="$PROJECT_DIR$/js/flower.js" />
         <option value="$PROJECT_DIR$/js/bad-flower.js" />
+        <option value="$PROJECT_DIR$/js/bee.js" />
+        <option value="$PROJECT_DIR$/js/hive.js" />
+        <option value="$PROJECT_DIR$/js/flower.js" />
+        <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/css/main.css" />
+        <option value="$PROJECT_DIR$/js/bear.js" />
+        <option value="$PROJECT_DIR$/js/bee-eater.js" />
+        <option value="$PROJECT_DIR$/js/main.js" />
       </list>
     </option>
   </component>
@@ -245,9 +238,8 @@
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1700" />
-    <option name="height" value="1056" />
+    <option name="width" value="1292" />
+    <option name="height" value="1036" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -265,27 +257,21 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
-              <item name="gameBee" type="b2602c69:ProjectViewProjectNode" />
-              <item name="gameBee" type="462c0819:PsiDirectoryNode" />
+              <item name="CanvasGame" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CanvasGame" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="gameBee" type="b2602c69:ProjectViewProjectNode" />
-              <item name="gameBee" type="462c0819:PsiDirectoryNode" />
+              <item name="CanvasGame" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CanvasGame" type="462c0819:PsiDirectoryNode" />
               <item name="css" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="gameBee" type="b2602c69:ProjectViewProjectNode" />
-              <item name="gameBee" type="462c0819:PsiDirectoryNode" />
-              <item name="images" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="gameBee" type="b2602c69:ProjectViewProjectNode" />
-              <item name="gameBee" type="462c0819:PsiDirectoryNode" />
+              <item name="CanvasGame" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CanvasGame" type="462c0819:PsiDirectoryNode" />
               <item name="js" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -293,10 +279,11 @@
         </subPane>
       </pane>
       <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../utils" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="options.lastSelected" value="vcs.Subversion" />
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="options.splitter.details.proportions" value="0.2" />
@@ -391,6 +378,20 @@
       <workItem from="1512932141189" duration="598000" />
       <workItem from="1512935239517" duration="1630000" />
       <workItem from="1512937078466" duration="694000" />
+      <workItem from="1512978589397" duration="1361000" />
+      <workItem from="1512980160317" duration="1764000" />
+      <workItem from="1512981963907" duration="1864000" />
+      <workItem from="1512983865763" duration="1190000" />
+      <workItem from="1512986631349" duration="1770000" />
+      <workItem from="1512988441093" duration="1525000" />
+      <workItem from="1512991862037" duration="1857000" />
+      <workItem from="1512993759257" duration="1771000" />
+      <workItem from="1512995623659" duration="1978000" />
+      <workItem from="1512997777550" duration="2091000" />
+      <workItem from="1512999905611" duration="946000" />
+      <workItem from="1513001723414" duration="1436000" />
+      <workItem from="1513003704201" duration="1777000" />
+      <workItem from="1513005519272" duration="718000" />
     </task>
     <task id="LOCAL-00001" summary="add index.js, main.css, main.js">
       <created>1512325643007</created>
@@ -417,21 +418,21 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="86818000" />
+    <option name="totallyTimeSpent" value="108866000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1700" height="1056" extended-state="0" />
+    <frame x="-8" y="0" width="1292" height="1036" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15102287" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1539075" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3109426" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3109426" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.41386783" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -582,13 +583,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/bee-eater.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="24" column="24" lean-forward="false" selection-start-line="24" selection-start-column="24" selection-end-line="24" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
@@ -596,31 +590,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/images/bear-fat.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/images/bee.gif">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/css/main.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="920">
-          <caret line="46" column="13" lean-forward="false" selection-start-line="46" selection-start-column="13" selection-end-line="46" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/images/bear-fat.png" />
+    <entry file="file://$PROJECT_DIR$/images/bee.gif" />
     <entry file="file://$PROJECT_DIR$/images/bear-run.png">
       <provider selected="true" editor-type-id="images">
         <state />
@@ -631,60 +602,86 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/bear.js">
+    <entry file="file://$PROJECT_DIR$/js/good-flower.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="16" column="32" lean-forward="false" selection-start-line="16" selection-start-column="32" selection-end-line="16" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3800">
-          <caret line="190" column="30" lean-forward="false" selection-start-line="190" selection-start-column="30" selection-end-line="190" selection-end-column="30" />
+        <state relative-caret-position="102">
+          <caret line="6" column="8" lean-forward="false" selection-start-line="6" selection-start-column="8" selection-end-line="6" selection-end-column="49" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/hive.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="10" column="43" lean-forward="false" selection-start-line="10" selection-start-column="43" selection-end-line="10" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/bee.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1900">
-          <caret line="95" column="10" lean-forward="false" selection-start-line="73" selection-start-column="8" selection-end-line="95" selection-end-column="10" />
-          <folding>
-            <marker date="1512927692349" expanded="true" signature="4200:4209" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/good-flower.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="6" column="8" lean-forward="false" selection-start-line="6" selection-start-column="8" selection-end-line="6" selection-end-column="49" />
+        <state relative-caret-position="221">
+          <caret line="13" column="24" lean-forward="false" selection-start-line="13" selection-start-column="24" selection-end-line="13" selection-end-column="24" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/bad-flower.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="40">
-          <caret line="2" column="23" lean-forward="true" selection-start-line="2" selection-start-column="23" selection-end-line="2" selection-end-column="23" />
+        <state relative-caret-position="34">
+          <caret line="2" column="23" lean-forward="false" selection-start-line="2" selection-start-column="23" selection-end-line="2" selection-end-column="23" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/flower.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="29" column="23" lean-forward="true" selection-start-line="29" selection-start-column="23" selection-end-line="29" selection-end-column="23" />
+        <state relative-caret-position="1207">
+          <caret line="71" column="12" lean-forward="false" selection-start-line="71" selection-start-column="4" selection-end-line="71" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" column="53" lean-forward="false" selection-start-line="19" selection-start-column="53" selection-end-line="19" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/main.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1173">
+          <caret line="69" column="17" lean-forward="false" selection-start-line="69" selection-start-column="17" selection-end-line="69" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/bear.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="26" column="21" lean-forward="true" selection-start-line="26" selection-start-column="21" selection-end-line="26" selection-end-column="30" />
+          <folding>
+            <marker date="1513000256325" expanded="true" signature="1169:1187" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/bee.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2091">
+          <caret line="123" column="0" lean-forward="false" selection-start-line="123" selection-start-column="0" selection-end-line="123" selection-end-column="0" />
+          <folding>
+            <marker date="1512978558302" expanded="true" signature="1639:1657" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/bee-eater.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="23" column="27" lean-forward="false" selection-start-line="23" selection-start-column="27" selection-end-line="23" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="355" column="58" lean-forward="false" selection-start-line="355" selection-start-column="58" selection-end-line="355" selection-end-column="58" />
           <folding />
         </state>
       </provider>
