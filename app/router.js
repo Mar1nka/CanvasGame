@@ -2,7 +2,7 @@
 
 (function () {
 
-    let routes = [
+    const ROUTES = [
         {
             state: 'main-menu',
             url: 'app/main-menu/main-menu.html',
@@ -33,51 +33,54 @@
         }
     ]
 
-    function Router () {
-        this.hashChangeHandlerBind = this.hashChangeHandler.bind(this);
+    class Router {
 
-        window.location.hash = '#main-menu';
-        this.updateRoute('main-menu');
-        window.addEventListener('hashchange', this.hashChangeHandlerBind);
+        constructor () {
+            this.hashChangeHandlerBind = this.hashChangeHandler.bind(this);
+            window.location.hash = '#main-menu';
+            this.updateRoute('main-menu');
+            window.addEventListener('hashchange', this.hashChangeHandlerBind);
+        }
+
+        hashChangeHandler (event) {
+            var splitUrl = event.newURL.split('#');
+            var newState = splitUrl[1];
+
+            this.updateRoute(newState);
+        }
+
+
+        updateRoute (state) {
+            var route = ROUTES.find(function (route) {
+                if (route.state === state) {
+                    return true;
+                }
+            });
+
+            this.loadTemplateHtml(route.url, function (templateHtml) {
+                var mainElement = document.body.querySelector('.main');
+                mainElement.innerHTML = templateHtml;
+
+                if (route.handler) {
+                    route.handler();
+                }
+            });
+        }
+
+        loadTemplateHtml (url, callback) {
+            var xhr = new XMLHttpRequest();
+
+            xhr.open('GET', url, true);
+            xhr.send();
+
+            xhr.addEventListener('readystatechange', function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    callback(xhr.responseText);
+                }
+            })
+        }
+
     }
 
-    Router.prototype.hashChangeHandler = function hashChangeHandler (event) {
-        var splitUrl = event.newURL.split('#');
-        var newState = splitUrl[1];
-
-        this.updateRoute(newState);
-    }
-
-
-    Router.prototype.updateRoute = function updateRoute (state) {
-        var route = routes.find(function (route) {
-            if (route.state === state) {
-                return true;
-            }
-        });
-
-        this.loadTemplateHtml(route.url, function (templateHtml) {
-            var mainElement = document.body.querySelector('.main');
-            mainElement.innerHTML = templateHtml;
-
-            if (route.handler) {
-                route.handler();
-            }
-        });
-    }
-
-    Router.prototype.loadTemplateHtml = function loadTemplateHtml (url, callback) {
-        var xhr = new XMLHttpRequest();
-
-        xhr.open('GET', url, true);
-        xhr.send();
-
-        xhr.addEventListener('readystatechange', function () {
-            if (xhr.readyState === 4 && xhr.status === 200) {
-                callback(xhr.responseText);
-            }
-        })
-    }
-
-    var router = new Router();
+    window.Router = Router;
 })();
