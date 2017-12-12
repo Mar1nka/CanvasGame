@@ -41,13 +41,13 @@ class Flower {
                 }
             }
 
-            if(this.isFadeAway) {
-                if (this.currentImageIndex >= 0) {
-                    this.currentImageIndex -= 1;
-                } else {
-                    this.frameCounter = false;
-                }
-            }
+            // if(this.isFadeAway) {
+            //     if (this.currentImageIndex >= 0) {
+            //         this.currentImageIndex -= 1;
+            //     } else {
+            //         this.frameCounter = false;
+            //     }
+            // }
         }
 
         this.context.drawImage(
@@ -69,12 +69,12 @@ class Flower {
         this.frameCounter = 0;
     }
 
-    fadeAway() {
-        this.isFadeAway = true;
-        this.currentImageIndex = this.imageFrameNumber;
-        this.frameCounter = 0;
-        this.frameDelay = 0;
-    }
+    // fadeAway() {
+    //     this.isFadeAway = true;
+    //     this.currentImageIndex = this.imageFrameNumber;
+    //     this.frameCounter = 0;
+    //     this.frameDelay = 0;
+    // }
 
 }
 

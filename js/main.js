@@ -64,14 +64,14 @@ class Main {
         this.canvas = document.querySelector('.play-area');
         this.context = this.canvas.getContext('2d');
 
-        this.canvas.style.background = '#7DC24B';
         this.canvas.width = document.body.offsetWidth;
         this.canvas.height = document.body.offsetHeight - 80;
 
         this.canvas.x = 0;
         this.canvas.y = 0;
-    }
 
+        this.canvas.style.background = '#7DC24B';
+    }
 
     initHive () {
         this.hive = new Hive(this.context);
@@ -142,14 +142,14 @@ class Main {
             obj1.height + obj1.y > obj2.y);
     }
 
-    showScores (counter) {
+    showScores (scores) {
         let element = document.querySelector('.scores-value');
-        element.innerHTML = counter;
+        element.innerHTML = scores;
     }
 
-    showHealth (counter) {
+    showHealth (health) {
         let element = document.querySelector('.health-value');
-        element.innerHTML = counter;
+        element.innerHTML = health;
     }
 
     getDifficulty () {
@@ -193,6 +193,15 @@ class Main {
             break;
         }
     }
+
+    destroy () {
+        clearInterval(this.addFlowersIntervalId);
+        clearTimeout(this.moveRightBearTimerId);
+        clearTimeout(this.moveLeftBearTimerId);
+        cancelAnimationFrame(this.requestAnimationId);
+        this.isGameOver = true;
+    }
+
 
     render () {
         for (let i = 0; i < this.sceneObjects.length; i++) {
@@ -305,14 +314,13 @@ class Main {
     changeBadFlowersPositions () {
         for (let i = 0; i < this.badFlowers.length; i++) {
             let flower = this.badFlowers[i];
-            // flower.fadeAway();
             flower.blossom();
             this.setFlowersPosition(flower);
         }
     }
 
     updateScores (flowers) {
-        let arrIntersectionGoodFlowers = this.checkIntersectionObjectsBeeFlowers(flowers);
+        let arrIntersectionGoodFlowers = this.getIntersectionObjectsBeeFlowers(flowers);
 
         this.scores += arrIntersectionGoodFlowers.length;
         this.showScores(this.scores);
@@ -327,7 +335,7 @@ class Main {
     }
 
     updateBadFlowers (badFlowers) {
-        let arrIntersectionBadFlowers = this.checkIntersectionObjectsBeeFlowers(badFlowers);
+        let arrIntersectionBadFlowers = this.getIntersectionObjectsBeeFlowers(badFlowers);
         this.health -= arrIntersectionBadFlowers.length;
         this.showHealth(this.health);
 
@@ -337,7 +345,7 @@ class Main {
         }
     }
 
-    checkIntersectionObjectsBeeFlowers (flowers) {
+    getIntersectionObjectsBeeFlowers (flowers) {
         let arrIntersectionObjects = [];
 
         for (let i = 0; i < flowers.length; i++) {
@@ -351,7 +359,6 @@ class Main {
         return arrIntersectionObjects;
     }
 
-
     checkHealth () {
         if (this.health <= 0) {
             this.showHealth('Game over');
@@ -359,19 +366,10 @@ class Main {
         }
     }
 
-    destroy () {
-        clearInterval(this.addFlowersIntervalId);
-        clearTimeout(this.moveRightBearTimerId);
-        clearTimeout(this.moveLeftBearTimerId);
-        cancelAnimationFrame(this.requestAnimationId);
-        this.isGameOver = true;
-    }
-
-
     deleteFlowers (flowersForDelete, flowers) {
         while (flowersForDelete.length) {
             let index = flowers.indexOf(flowersForDelete[0]);
-            flowersForDelete[0].fadeAway();
+            // flowersForDelete[0].fadeAway();
             flowers.splice(index, 1);
             flowersForDelete.shift();
         }
@@ -398,7 +396,7 @@ class Main {
         this.leftBear.setToInitialState();
 
         clearTimeout(this.moveLeftBearTimerId);
-        let milliseconds = this.getRandom(20000, 30000);
+        let milliseconds = this.getRandom(10000, 20000);
         this.moveLeftBearTimerId = setTimeout(this.moveLeftBearsCyclicallyBind, milliseconds);
     }
 
@@ -406,7 +404,7 @@ class Main {
         this.rightBear.setToInitialState();
 
         clearTimeout(this.moveRightBearTimerId);
-        let milliseconds = this.getRandom(20000, 30000);
+        let milliseconds = this.getRandom(10000, 20000);
         this.moveRightBearTimerId = setTimeout(this.moveRightBearsCyclicallyBind, milliseconds);
     }
 
@@ -421,7 +419,6 @@ class Main {
             this.checkHealth();
         }
     }
-
 }
 
 let main = new Main();

@@ -9,7 +9,7 @@ class BeeEater {
         this.endX = 0;
         this.endY = 0;
 
-        this.color = '#49619f';
+        // this.color = '#49619f';
 
         this.rightMovingImage = new Image();
         this.rightMovingImage.src = 'images/rightMovingBeeEater.png';
