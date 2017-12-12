@@ -8,7 +8,7 @@ class Hive {
         this.color = '#634c0b';
 
         this.image = new Image();
-        this.image.src = 'images/hive.png';
+        this.image.src = 'images/scene/hive.png';
     }
 
     setPosition (x, y) {

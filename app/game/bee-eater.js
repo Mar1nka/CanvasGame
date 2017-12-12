@@ -12,10 +12,10 @@ class BeeEater {
         // this.color = '#49619f';
 
         this.rightMovingImage = new Image();
-        this.rightMovingImage.src = 'images/rightMovingBeeEater.png';
+        this.rightMovingImage.src = 'images/scene/rightMovingBeeEater.png';
 
         this.leftMovingImage = new Image();
-        this.leftMovingImage.src = 'images/leftMovingBeeEater.png';
+        this.leftMovingImage.src = 'images/scene/leftMovingBeeEater.png';
 
         this.currentImageIndex = 0;
         this.imageFrameNumber = 16;

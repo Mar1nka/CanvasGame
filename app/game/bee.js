@@ -26,10 +26,10 @@ class Bee {
         this.stepY = 0;
 
         this.rightMovingImage = new Image();
-        this.rightMovingImage.src = 'images/rightMovingBee.png';
+        this.rightMovingImage.src = 'images/scene/rightMovingBee.png';
 
         this.leftMovingImage = new Image();
-        this.leftMovingImage.src = 'images/leftMovingBee.png';
+        this.leftMovingImage.src = 'images/scene/leftMovingBee.png';
 
         this.currentImageIndex = 0;
         this.imageFrameNumber = 3;

@@ -1,4 +1,4 @@
-class Main {
+class PlayGround {
     constructor () {
         this.canvas = null;
         this.context = null;
@@ -43,7 +43,7 @@ class Main {
         window.addEventListener('resize', () => {
             this.canvas.width = document.body.offsetWidth;
             this.canvas.height = document.body.offsetHeight - 80;
-        })
+        });
     }
 
     init () {
@@ -421,6 +421,6 @@ class Main {
     }
 }
 
-let main = new Main();
+global.PlayGround = PlayGround;
 
 

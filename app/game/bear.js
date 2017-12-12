@@ -37,10 +37,10 @@ class Bear {
 
 
         this.rightMovingImage = new Image();
-        this.rightMovingImage.src = 'images/rightMovingBear.png';
+        this.rightMovingImage.src = 'images/scene/rightMovingBear.png';
 
         this.leftMovingImage = new Image();
-        this.leftMovingImage.src = 'images/leftMovingBear.png';
+        this.leftMovingImage.src = 'images/scene/leftMovingBear.png';
 
         this.rightMovingImage.addEventListener('load', () => {
             this.frames = 0;
