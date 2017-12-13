@@ -13,18 +13,14 @@
             url: 'app/game/game.html',
             html: '',
             handler: function () {
-                var game = new global.Game();
+                let game = new global.Game();
                 game.start();
             }
         },
         {
-            state: 'settings',
-            url: 'app/settings/settings.html',
-            html: '',
-            handler: function () {
-                // var setting = new global.GameSettings();
-                // setting.start();
-            }
+            state: 'controls',
+            url: 'app/controls/controls.html',
+            html: ''
         },
         {
             state: 'about',
@@ -43,22 +39,23 @@
         }
 
         hashChangeHandler (event) {
-            var splitUrl = event.newURL.split('#');
-            var newState = splitUrl[1];
+            let splitUrl = event.newURL.split('#');
+            let newState = splitUrl[1];
 
             this.updateRoute(newState);
         }
 
 
         updateRoute (state) {
-            var route = ROUTES.find(function (route) {
+            let route = ROUTES.find(function (route) {
                 if (route.state === state) {
+                    console.log(true)
                     return true;
                 }
             });
 
             this.loadTemplateHtml(route.url, function (templateHtml) {
-                var mainElement = document.body.querySelector('.main');
+                let mainElement = document.body.querySelector('.main');
                 mainElement.innerHTML = templateHtml;
 
                 if (route.handler) {
@@ -68,7 +65,7 @@
         }
 
         loadTemplateHtml (url, callback) {
-            var xhr = new XMLHttpRequest();
+            let xhr = new XMLHttpRequest();
 
             xhr.open('GET', url, true);
             xhr.send();

@@ -1,145 +1,97 @@
 'use strict';
 
 (function () {
-    const Timer = global.Timer;
     const PlayGround = global.PlayGround;
-    const SettingsStorage = global.SettingsStorage;
-
     const TIME_OVER_MS = 300500;
 
 
-    function Game () {
-        this.prevCardElement = null;
-        this.isRotateInProcess = false;
-        this.backRotateTimerId = undefined;
+    function Game() {
         this.timeOverTimerId = undefined;
-        this.clickHandlerBind = this.clickHandler.bind(this);
-        this.foundCardsCounter = 0;
-        this.settings = {
-            category: SettingsStorage.getCategory(),
-            cardsNumber: SettingsStorage.getCardsNumber()
-        };
+        this.timeOverHandlerBind = this.timeOverHandler.bind(this);
+
         this.messageElement = null;
 
-        this.timer = null;
-        this.timeOverHandlerBind = this.timeOverHandler.bind(this);
         this.showGameWinMessageBind = this.showGameWinMessage.bind(this);
         this.destroyBind = this.destroy.bind(this);
 
+        this.playGround = undefined;
     }
 
-    Game.prototype.start = function start () {
-        let playGround = new PlayGround();
+    Game.prototype.start = function start() {
+        this.playGround = new PlayGround();
+        this.playGround.start();
 
-        // var playGroundElement = document.body.querySelector(".playground");
-        // var elementTimer = document.body.querySelector(".timer__label");
-        //
-        // this.playground = new PlayGround(playGroundElement, this.settings);
-        // this.timer = new Timer(elementTimer);
-        //
-        // this.playground.start();
-        // this.timer.start();
-        // this.scheduleTimeOver();
-        // playGroundElement.addEventListener("click", this.clickHandlerBind);
-        //
-        // window.addEventListener('hashchange', this.destroyBind);
+        this.scheduleTimeOver();
+
+        window.addEventListener('hashchange', this.destroyBind);
     }
 
-    Game.prototype.restart = function restart () {
-        this.prevCardElement = null;
-        this.foundCardsCounter = 0;
-        this.playground.start();
-        this.timer.start();
+    Game.prototype.restart = function restart() {
+        this.playGround.start();
         this.scheduleTimeOver();
     }
 
-    Game.prototype.scheduleTimeOver = function scheduleTimeOver () {
+    Game.prototype.scheduleTimeOver = function scheduleTimeOver() {
         this.timeOverTimerId = setTimeout(this.timeOverHandlerBind, TIME_OVER_MS);
     }
 
 
-    Game.prototype.clickHandler = function clickHandler () {
-        if (this.isRotateInProcess) {
-            return;
-        }
-
-        var currentElement = event.target;
-
-        if (currentElement.classList.contains("card__front")) {
-            var cardElement = currentElement.closest('.card');
-            if (cardElement.classList.contains('card--hidden')) {
-                return;
-            }
-            cardElement.classList.toggle("card--rotate");
-
-            if (this.prevCardElement) {
-                this.handelTwoOpenedCards(cardElement);
-            } else {
-                this.prevCardElement = cardElement;
-            }
-
-        }
+    Game.prototype.checkIsGameOver = function checkIsGameOver() {
     }
 
-    Game.prototype.checkIsGameOver = function checkIsGameOver () {
-        if (this.foundCardsCounter === this.settings.cardsNumber) {
-            this.stop();
-            setTimeout(this.showGameWinMessageBind, 1000);
-        }
-    }
-
-    Game.prototype.timeOverHandler = function timeOverHandler () {
+    Game.prototype.timeOverHandler = function timeOverHandler() {
         this.stop();
         this.showGameOverMessage();
     }
 
     Game.prototype.showGameWinMessage = function () {
-        this.playground.clearScene();
+        this.playGround.clearCanvas();
         this.showMessage('You are a winner!!!');
     }
 
     Game.prototype.showGameOverMessage = function () {
-        this.playground.clearScene();
+        this.playGround.clearCanvas();
         this.showMessage('Time is over.');
     }
 
 
-    Game.prototype.removeMessage = function removeMessage () {
+    Game.prototype.removeMessage = function removeMessage() {
         if (this.messageElement) {
             this.messageElement.parentNode.removeChild(this.messageElement);
         }
     }
 
-    Game.prototype.showMessage = function showMessage (message) {
-        var _this = this;
+    Game.prototype.showMessage = function showMessage(message) {
+        let _this = this;
 
-        var messageTextElement = document.createElement('p');
+        let messageTextElement = document.createElement('p');
         messageTextElement.innerText = message;
 
-        var messageTextWrapperElement = document.createElement('div');
+        let messageTextWrapperElement = document.createElement('div');
         messageTextWrapperElement.classList.add('game-message__text');
         messageTextWrapperElement.appendChild(messageTextElement);
 
 
-        var messageMenuButtonElement = document.createElement('a');
+        let messageMenuButtonElement = document.createElement('a');
         messageMenuButtonElement.classList.add('game-message__button');
-        messageMenuButtonElement.innerText = 'PlayGround menu';
+        messageMenuButtonElement.innerText = 'menu';
         messageMenuButtonElement.href = '#main-menu';
 
-        var messageAgainButtonElement = messageMenuButtonElement.cloneNode(true);
+        let messageAgainButtonElement = messageMenuButtonElement.cloneNode(true);
         messageAgainButtonElement.innerText = 'Play again';
         messageAgainButtonElement.href = '#game';
+
         messageAgainButtonElement.addEventListener('click', function () {
             _this.removeMessage();
             _this.restart();
         })
 
-        var messageButtonWrapperElement = document.createElement('div');
+        let messageButtonWrapperElement = document.createElement('div');
         messageButtonWrapperElement.classList.add('game-message__button-wrapper');
         messageButtonWrapperElement.appendChild(messageMenuButtonElement);
         messageButtonWrapperElement.appendChild(messageAgainButtonElement);
 
-        var messageElement = document.createElement('div');
+        let messageElement = document.createElement('div');
         messageElement.classList.add('game-message');
         messageElement.appendChild(messageTextWrapperElement);
         messageElement.appendChild(messageButtonWrapperElement);
@@ -150,13 +102,12 @@
     }
 
     Game.prototype.stop = function () {
-        this.timer.stop();
-        clearTimeout(this.backRotateTimerId);
         clearTimeout(this.timeOverTimerId);
     }
 
     Game.prototype.destroy = function () {
         this.stop();
+        this.playGround.destroy();
         this.removeMessage();
         window.removeEventListener('hashchange', this.destroyBind);
 

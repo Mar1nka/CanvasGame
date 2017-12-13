@@ -32,18 +32,23 @@ class PlayGround {
         this.moveRightBearsCyclicallyBind = this.moveRightBearsCyclically.bind(this);
         this.changePosBadFlowersBind = this.changeBadFlowersPositions.bind(this);
 
+        this.sceneObjects = [];
+
+        // this.init();
+    }
+
+    start() {
         this.init();
+        window.addEventListener('resize', () => {
+            this.canvas.width = document.body.offsetWidth;
+            this.canvas.height = document.body.offsetHeight - 80;
+        });
 
         this.sceneObjects = [
             this.hive,
             this.bee,
             this.goodFlowers
         ];
-
-        window.addEventListener('resize', () => {
-            this.canvas.width = document.body.offsetWidth;
-            this.canvas.height = document.body.offsetHeight - 80;
-        });
     }
 
     init () {
@@ -131,6 +136,11 @@ class PlayGround {
     }
 
 
+    clearCanvas () {
+        this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    }
+
+
     getRandom (min, max) {
         return Math.floor(Math.random() * (max - min)) + min;
     }
@@ -208,7 +218,7 @@ class PlayGround {
             this.updateObj(this.sceneObjects[i]);
         }
 
-        this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        this.clearCanvas();
 
         for (let i = 0; i < this.sceneObjects.length; i++) {
             this.drawObj(this.sceneObjects[i]);

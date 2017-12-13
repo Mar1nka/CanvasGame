@@ -1,3 +1,5 @@
+window.global = window.global || {};
+
 class Flower {
     constructor (context) {
         this.context = context;

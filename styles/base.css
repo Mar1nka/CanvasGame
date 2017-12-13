@@ -35,25 +35,22 @@ body {
 
 
 .menu {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    height: 80px;
-    width: 150px;
-    margin: 0 auto;
-
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
+
+    position: absolute;
+    top: 5px;
+    left: 10px;
 }
 
 .menu__item {
-    padding: 15px;
+    padding: 10px;
 
     background: #C1E4FF;
-    color: #F3B60D;
-    border: 5px solid white;
+    color: white;
+    border: 3px solid white;
     border-radius: 15px;
     text-decoration: none;
     text-transform: uppercase;

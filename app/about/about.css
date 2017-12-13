@@ -10,6 +10,9 @@
     background: white;
     border: 5px solid #F3B60D;
     border-radius: 30px;
+
+    max-height: 800px;
+
 }
 
 .about__item {
@@ -41,7 +44,9 @@
     margin: 10px;
     padding: 10px;
 
-    max-width: 600px;
+    max-width: 500px;
+
+    min-width: 500px;
 
 }
 
@@ -64,20 +69,33 @@
 }
 
 
-.description__item-img {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    flex-wrap: wrap;
+.description__object {
+    overflow: auto;
 }
 
-.img__item {
-    width: auto;
-    height: 200px;
-    border: 2px solid #074c18;
+.object__item {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.object-img {
+    width: 150px;
+    height: auto;
 
     margin: 10px;
 }
+
+.object-text {
+    font-size: 1.1em;
+    color: #777777;
+    text-align: left;
+
+    margin-left: 40px;
+}
+
+
+
 
 
 
