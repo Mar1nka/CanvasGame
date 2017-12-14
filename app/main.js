@@ -1,2 +1,3 @@
+'use strict';
 
-var router = new Router();
+const router = new Router();

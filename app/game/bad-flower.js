@@ -6,4 +6,4 @@ class BadFlower extends Flower{
     }
 }
 
-window.BadFlower = BadFlower;
+global.BadFlower = BadFlower;

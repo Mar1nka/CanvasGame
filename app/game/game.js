@@ -1,11 +1,12 @@
-'use strict';
-
 (function () {
+
+    'use strict';
+
     const PlayGround = global.PlayGround;
     const TIME_OVER_MS = 300500;
 
 
-    function Game() {
+    function Game () {
         this.timeOverTimerId = undefined;
         this.timeOverHandlerBind = this.timeOverHandler.bind(this);
 
@@ -16,31 +17,30 @@
         this.destroyBind = this.destroy.bind(this);
 
         this.playGround = undefined;
-
-        EventObserver.addEventListener('gameOver', this.showGameOverMessageBind);
-        EventObserver.addEventListener('winning', this.showGameWinMessageBind);
     }
 
-    Game.prototype.start = function start() {
+    Game.prototype.start = function start () {
         this.playGround = new PlayGround();
         this.playGround.start();
 
         this.scheduleTimeOver();
 
         window.addEventListener('hashchange', this.destroyBind);
+        EventObserver.addEventListener('gameOver', this.showGameOverMessageBind);
+        EventObserver.addEventListener('winning', this.showGameWinMessageBind);
     }
 
-    Game.prototype.restart = function restart() {
+    Game.prototype.restart = function restart () {
         this.playGround.start();
         this.scheduleTimeOver();
     }
 
-    Game.prototype.scheduleTimeOver = function scheduleTimeOver() {
+    Game.prototype.scheduleTimeOver = function scheduleTimeOver () {
         this.timeOverTimerId = setTimeout(this.timeOverHandlerBind, TIME_OVER_MS);
     }
 
 
-    Game.prototype.timeOverHandler = function timeOverHandler() {
+    Game.prototype.timeOverHandler = function timeOverHandler () {
         this.stop();
         this.showGameOverMessage();
     }
@@ -56,13 +56,14 @@
     }
 
 
-    Game.prototype.removeMessage = function removeMessage() {
+    Game.prototype.removeMessage = function removeMessage () {
         if (this.messageElement) {
             this.messageElement.parentNode.removeChild(this.messageElement);
+            this.messageElement = null;
         }
     }
 
-    Game.prototype.showMessage = function showMessage(message) {
+    Game.prototype.showMessage = function showMessage (message) {
         let _this = this;
 
         let messageTextElement = document.createElement('p');
@@ -113,6 +114,8 @@
         this.removeMessage();
         window.removeEventListener('hashchange', this.destroyBind);
 
+        EventObserver.removeEventListener('gameOver', this.showGameOverMessageBind);
+        EventObserver.removeEventListener('winning', this.showGameWinMessageBind);
     }
 
     global.Game = Game;

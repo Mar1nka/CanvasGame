@@ -9,8 +9,6 @@ class BeeEater {
         this.endX = 0;
         this.endY = 0;
 
-        // this.color = '#49619f';
-
         this.rightMovingImage = new Image();
         this.rightMovingImage.src = 'images/scene/rightMovingBeeEater.png';
 
@@ -58,11 +56,6 @@ class BeeEater {
     }
 
     draw () {
-        // this.context.beginPath();
-        // this.context.fillStyle = this.color;
-        // this.context.fillRect(this.x, this.y, this.width, this.height);
-        // this.context.stroke();
-
         this.frameCounter++;
 
         if(this.frameCounter > this.frameDelay) {
@@ -110,4 +103,4 @@ class BeeEater {
     }
 }
 
-window.BeeEater = BeeEater;
+global.BeeEater = BeeEater;

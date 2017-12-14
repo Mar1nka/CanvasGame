@@ -1,6 +1,6 @@
-'use strict';
-
 (function () {
+
+    'use strict';
 
     const ROUTES = [
         {
@@ -78,5 +78,6 @@
 
     }
 
-    window.Router = Router;
+    global.Router = Router;
+
 })();

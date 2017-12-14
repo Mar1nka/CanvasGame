@@ -1,7 +1,9 @@
+const global = window;
+
 (function () {
     'use strict';
 
-    var instance;
+    let instance;
 
     /**
      * Function-constructor which creates only one instance of object
@@ -35,9 +37,9 @@
      * @param arg {any} parameters which will be given to handler
      * */
     EventObserver.prototype.triggerEvent = function (eventType, arg) {
-        var _this = this;
+        let _this = this;
 
-        for (var i = _this.eventCollection.length - 1; i >= 0; i--) {
+        for (let i = _this.eventCollection.length - 1; i >= 0; i--) {
             if (_this.eventCollection[i].eventType === eventType) {
                 _this.eventCollection[i].eventHandler(arg);
             }
@@ -50,9 +52,9 @@
      * @param eventHandler {Function} checks function handler to be removed
      * */
     EventObserver.prototype.removeEventListener = function (eventType, eventHandler) {
-        var _this = this;
+        let _this = this;
 
-        for (var i = _this.eventCollection.length - 1; i >= 0; i--) {
+        for (let i = _this.eventCollection.length - 1; i >= 0; i--) {
             if (_this.eventCollection[i].eventType === eventType && _this.eventCollection[i].eventHandler === eventHandler) {
                 _this.eventCollection.splice(i, 1);
             }
@@ -67,7 +69,6 @@
         this.eventCollection = [];
     };
 
-
-    window.EventObserver = new EventObserver();
+    global.EventObserver = new EventObserver();
 
 })();
