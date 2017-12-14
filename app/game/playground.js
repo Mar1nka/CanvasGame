@@ -32,13 +32,42 @@ class PlayGround {
         this.moveRightBearsCyclicallyBind = this.moveRightBearsCyclically.bind(this);
         this.changePosBadFlowersBind = this.changeBadFlowersPositions.bind(this);
 
+        this.deleteFlowerBind = this.deleteFlower.bind(this);
+        EventObserver.addEventListener('deleteGoodFlower', this.deleteFlowerBind );
+
         this.sceneObjects = [];
 
         // this.init();
     }
 
+    deleteFlower() {
+        let flower = arguments[0];
+
+        if(flower instanceof GoodFlower) {
+            let index = this.goodFlowers.indexOf(flower);
+            this.goodFlowers.splice(index, 1);
+        } else if(flower instanceof BadFlower) {
+            let index = this.badFlowers.indexOf(flower);
+            this.badFlowers.splice(index, 1);
+        }
+    }
+
     start() {
+        this.isGameOver = false;
+        this.scores = 0;
+        this.currentDifficulty = 0;
+        this.goodFlowers = [];
+        this.badFlowers = [];
+        this.health = this.maxNumberBadFlowers;
+
+        this.requestAnimationId = undefined;
+        this.addFlowersIntervalId = undefined;
+        this.moveLeftBearTimerId = undefined;
+        this.moveRightBearTimerId = undefined;
+        this.changeBadFlowersPositionIntervalId = undefined;
+
         this.init();
+
         window.addEventListener('resize', () => {
             this.canvas.width = document.body.offsetWidth;
             this.canvas.height = document.body.offsetHeight - 80;
@@ -63,6 +92,16 @@ class PlayGround {
         this.requestAnimationId = requestAnimationFrame(this.renderBind);
 
         this.addFlowersIntervalId = setInterval(this.addFlowersBind, 500);
+    }
+
+    destroy () {
+        clearInterval(this.addFlowersIntervalId);
+        clearInterval(this.changeBadFlowersPositionIntervalId)
+        clearTimeout(this.moveRightBearTimerId);
+        clearTimeout(this.moveLeftBearTimerId);
+        cancelAnimationFrame(this.requestAnimationId);
+
+        this.isGameOver = true;
     }
 
     initCanvas () {
@@ -198,19 +237,13 @@ class PlayGround {
             this.sceneObjects.push(this.beeEater);
             break;
         case 4:
-            this.showHealth('You are winner');
+            EventObserver.triggerEvent('winning');
             this.destroy();
             break;
         }
     }
 
-    destroy () {
-        clearInterval(this.addFlowersIntervalId);
-        clearTimeout(this.moveRightBearTimerId);
-        clearTimeout(this.moveLeftBearTimerId);
-        cancelAnimationFrame(this.requestAnimationId);
-        this.isGameOver = true;
-    }
+
 
 
     render () {
@@ -340,7 +373,11 @@ class PlayGround {
                 this.currentDifficulty = this.getDifficulty();
                 this.checkGameStage();
             }
-            this.deleteFlowers(arrIntersectionGoodFlowers, flowers);
+            //this.deleteFlowers(arrIntersectionGoodFlowers, flowers);
+
+            for(let i = 0; i < arrIntersectionGoodFlowers.length; i ++) {
+                arrIntersectionGoodFlowers[i].changeImage();
+            }
         }
     }
 
@@ -351,7 +388,11 @@ class PlayGround {
 
         if (arrIntersectionBadFlowers.length) {
             this.checkHealth();
-            this.deleteFlowers(arrIntersectionBadFlowers, badFlowers);
+
+            for(let i = 0; i < arrIntersectionBadFlowers.length; i ++) {
+                arrIntersectionBadFlowers[i].changeImage();
+            }
+            // this.deleteFlowers(arrIntersectionBadFlowers, badFlowers);
         }
     }
 
@@ -361,8 +402,12 @@ class PlayGround {
         for (let i = 0; i < flowers.length; i++) {
             let flower = flowers[i];
 
-            if (this.checkIntersectionObjects(this.bee, flower)) {
-                arrIntersectionObjects.push(flower);
+            if(!flower.isEnd) {
+
+                if (this.checkIntersectionObjects(this.bee, flower)) {
+                    arrIntersectionObjects.push(flower);
+                }
+
             }
         }
 
@@ -371,8 +416,8 @@ class PlayGround {
 
     checkHealth () {
         if (this.health <= 0) {
-            this.showHealth('Game over');
             this.destroy();
+            EventObserver.triggerEvent('gameOver');
         }
     }
 

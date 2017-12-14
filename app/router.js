@@ -49,7 +49,6 @@
         updateRoute (state) {
             let route = ROUTES.find(function (route) {
                 if (route.state === state) {
-                    console.log(true)
                     return true;
                 }
             });

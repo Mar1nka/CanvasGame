@@ -12,9 +12,13 @@
         this.messageElement = null;
 
         this.showGameWinMessageBind = this.showGameWinMessage.bind(this);
+        this.showGameOverMessageBind = this.showGameOverMessage.bind(this);
         this.destroyBind = this.destroy.bind(this);
 
         this.playGround = undefined;
+
+        EventObserver.addEventListener('gameOver', this.showGameOverMessageBind);
+        EventObserver.addEventListener('winning', this.showGameWinMessageBind);
     }
 
     Game.prototype.start = function start() {
@@ -36,22 +40,19 @@
     }
 
 
-    Game.prototype.checkIsGameOver = function checkIsGameOver() {
-    }
-
     Game.prototype.timeOverHandler = function timeOverHandler() {
         this.stop();
         this.showGameOverMessage();
     }
 
     Game.prototype.showGameWinMessage = function () {
-        this.playGround.clearCanvas();
+
         this.showMessage('You are a winner!!!');
     }
 
     Game.prototype.showGameOverMessage = function () {
-        this.playGround.clearCanvas();
-        this.showMessage('Time is over.');
+        this.playGround.destroy();
+        this.showMessage('Game over');
     }
 
 
@@ -76,6 +77,7 @@
         messageMenuButtonElement.classList.add('game-message__button');
         messageMenuButtonElement.innerText = 'menu';
         messageMenuButtonElement.href = '#main-menu';
+
 
         let messageAgainButtonElement = messageMenuButtonElement.cloneNode(true);
         messageAgainButtonElement.innerText = 'Play again';

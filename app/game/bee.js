@@ -250,8 +250,6 @@ class Bee {
         } else if (event.keyCode === KEY_CODES.down) {
             this.downKeyPressed = false
         }
-
-        console.log('KeyUP')
     }
 
 

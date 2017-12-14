@@ -10,6 +10,7 @@ class Flower {
         this.color = '';
 
         this.image = new Image();
+        this.image2 = new Image();
 
         this.currentImageIndex = 0;
         this.imageFrameNumber = 5;
@@ -21,7 +22,7 @@ class Flower {
         this.croppedHeight = 140;
 
         this.isBlossom = true;
-        this.isFadeAway = false;
+        this.isEnd = false;
     }
 
     setPosition (x, y) {
@@ -43,13 +44,14 @@ class Flower {
                 }
             }
 
-            // if(this.isFadeAway) {
-            //     if (this.currentImageIndex >= 0) {
-            //         this.currentImageIndex -= 1;
-            //     } else {
-            //         this.frameCounter = false;
-            //     }
-            // }
+            if(this.isEnd) {
+                if (this.currentImageIndex < this.imageFrameNumber - 1) {
+                    this.currentImageIndex += 1;
+                } else {
+                     this.isEnd = false;
+                    EventObserver.triggerEvent('deleteGoodFlower', this);
+                }
+            }
         }
 
         this.context.drawImage(
@@ -71,13 +73,13 @@ class Flower {
         this.frameCounter = 0;
     }
 
-    // fadeAway() {
-    //     this.isFadeAway = true;
-    //     this.currentImageIndex = this.imageFrameNumber;
-    //     this.frameCounter = 0;
-    //     this.frameDelay = 0;
-    // }
+    changeImage() {
+        this.image = this.image2;
+        this.isEnd = true;
 
+        this.currentImageIndex = 0;
+        this.frameCounter = 0;
+    }
 }
 
 window.Flower = Flower;
