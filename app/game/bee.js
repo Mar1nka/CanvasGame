@@ -14,19 +14,8 @@
             this.canvas = context.canvas;
             this.canvasBoundingRect = this.canvas.getBoundingClientRect();
 
-            this.x = 0;
-            this.y = 0;
             this.width = 80;
             this.height = 80;
-            this.color = '#0e671d';
-
-            this.speedPerFrame = 4;
-            this.directionX = 1;
-            this.directionY = 1;
-            this.endX = 0;
-            this.endY = 0;
-            this.stepX = 0;
-            this.stepY = 0;
 
             this.rightMovingImage = new Image();
             this.rightMovingImage.src = 'images/scene/rightMovingBee.png';
@@ -34,36 +23,55 @@
             this.leftMovingImage = new Image();
             this.leftMovingImage.src = 'images/scene/leftMovingBee.png';
 
+            this.croppedWidth = 389;
+            this.croppedHeight = 433;
+
+            this.clickHandler = this.clickHandler.bind(this);
+            this.keyDownHandler = this.keyDownHandler.bind(this);
+            this.keyUpHandler = this.keyUpHandler.bind(this);
+
+            this.resizeCanvas = this.resizeCanvas.bind(this);
+
+            // used?
+            // this.rightMovingImage.addEventListener('load', () => {
+            // })
+        }
+
+        init () {
+            this.x = 0;
+            this.y = 0;
+
+            this.endX = 0;
+            this.endY = 0;
+
+            this.stepX = 0;
+            this.stepY = 0;
+
+            this.directionX = 1;
+            this.directionY = 1;
+
             this.currentImageIndex = 0;
             this.imageFrameNumber = 3;
 
             this.frameCounter = 0;
             this.frameDelay = 1;
 
-            this.croppedWidth = 389;
-            this.croppedHeight = 433;
-
-            this.rightMovingImage.addEventListener('load', () => {
-            })
+            this.speedPerFrame = 4;
 
             this.rightKeyPressed = false;
             this.leftKeyPressed = false;
             this.upKeyPressed = false;
             this.downKeyPressed = false;
 
-            this.clickHandler = this.clickHandler.bind(this);
-            this.keyDownHandler = this.keyDownHandler.bind(this);
-            this.keyUpHandler = this.keyUpHandler.bind(this);
-
-            //TODO removeListeners in bee.destroy method
             window.addEventListener('click', this.clickHandler);
             window.addEventListener("keydown", this.keyDownHandler, false);
             window.addEventListener("keyup", this.keyUpHandler, false);
 
-            //TODO removeListener in bee.destroy method
-            window.addEventListener('resize', () => {
-                this.canvasBoundingRect = this.canvas.getBoundingClientRect();
-            })
+            window.addEventListener('resize', this.resizeCanvas);
+        }
+
+        resizeCanvas () {
+            this.canvasBoundingRect = this.canvas.getBoundingClientRect();
         }
 
 
@@ -116,8 +124,8 @@
         }
 
         determineSteps () {
-            this.directionX = this.getDirection(this.endX, this.x);
-            this.directionY = this.getDirection(this.endY, this.y);
+            this.directionX = this.direction.x;
+            this.directionY = this.direction.y;
 
             let speedsObj = this.getSpeedsRerFrame();
 
@@ -125,13 +133,22 @@
             this.stepY = this.directionY * speedsObj.speedPerFrameY;
         }
 
-        //TODO maybe create property [ get direction ()]  without parameters
-        getDirection (endPos, pos) {
-            let direction = 1;
+        get direction () {
+            let directionX = 1;
+            let directionY = 1;
 
-            if ((endPos - pos) < 0) {
-                direction = -1;
+            if ((this.endX - this.x) < 0) {
+                directionX = -1;
             }
+
+            if ((this.endY - this.y) < 0) {
+                directionY = -1;
+            }
+
+            let direction = {
+                x: directionX,
+                y: directionY
+            };
 
             return direction;
         }
@@ -191,10 +208,10 @@
         }
 
         move () {
+            //Key press handler
             if (this.rightKeyPressed || this.leftKeyPressed || this.upKeyPressed || this.downKeyPressed) {
                 const step = 5;
 
-                //Key press handler
                 let x = this.endX;
                 let y = this.endY;
 
@@ -214,6 +231,7 @@
 
                 this.determineSteps();
             }
+
             //Click Handler
             if ((this.directionX === 1 && this.x < this.endX) || (this.directionX === -1 && this.x > this.endX)) {
                 this.x += this.stepX;
@@ -257,6 +275,14 @@
             } else if (event.keyCode === KEY_CODES.down) {
                 this.downKeyPressed = false
             }
+        }
+
+        destroy () {
+            window.removeEventListener('click', this.clickHandler);
+            window.removeEventListener("keydown", this.keyDownHandler, false);
+            window.removeEventListener("keyup", this.keyUpHandler, false);
+
+            window.removeEventListener('resize', this.resizeCanvas);
         }
 
     }

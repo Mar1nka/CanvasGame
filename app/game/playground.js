@@ -39,17 +39,6 @@
             this.sceneObjects = [];
         }
 
-        removeFlower () {
-            let flower = arguments[0];
-
-            if (flower instanceof GoodFlower) {
-                let index = this.goodFlowers.indexOf(flower);
-                this.goodFlowers.splice(index, 1);
-            } else if (flower instanceof BadFlower) {
-                let index = this.badFlowers.indexOf(flower);
-                this.badFlowers.splice(index, 1);
-            }
-        }
 
         start () {
             this.isGameOver = false;
@@ -107,6 +96,9 @@
             window.removeEventListener('resize', this.windowResizeHandler);
 
             //TODO call bee.destroy() method
+
+            this.bee.destroy();
+
             this.isGameOver = true;
         }
 
@@ -144,6 +136,7 @@
 
         initBee () {
             this.bee = new Bee(this.context);
+            this.bee.init();
             this.bee.setPosition(this.canvas.width / 4 - this.bee.width / 2, this.canvas.height / 4 - this.bee.height /
                 2);
             this.bee.draw();
@@ -250,6 +243,7 @@
                 break;
             }
         }
+
 
 
         render () {
@@ -379,7 +373,6 @@
                     this.currentDifficulty = this.getDifficulty();
                     this.checkGameStage();
                 }
-                //this.removeFlowers(arrIntersectionGoodFlowers, flowers);
 
                 for (let i = 0; i < arrIntersectionGoodFlowers.length; i++) {
                     arrIntersectionGoodFlowers[i].changeImage();
@@ -398,7 +391,6 @@
                 for (let i = 0; i < arrIntersectionBadFlowers.length; i++) {
                     arrIntersectionBadFlowers[i].changeImage();
                 }
-                // this.removeFlowers(arrIntersectionBadFlowers, badFlowers);
             }
         }
 
@@ -427,14 +419,18 @@
             }
         }
 
-        removeFlowers (flowersForDelete, flowers) {
-            while (flowersForDelete.length) {
-                let index = flowers.indexOf(flowersForDelete[0]);
-                // flowersForDelete[0].fadeAway();
-                flowers.splice(index, 1);
-                flowersForDelete.shift();
+        removeFlower () {
+            let flower = arguments[0];
+
+            if (flower instanceof GoodFlower) {
+                let index = this.goodFlowers.indexOf(flower);
+                this.goodFlowers.splice(index, 1);
+            } else if (flower instanceof BadFlower) {
+                let index = this.badFlowers.indexOf(flower);
+                this.badFlowers.splice(index, 1);
             }
         }
+
 
         // bears
         updateBear (bear) {
