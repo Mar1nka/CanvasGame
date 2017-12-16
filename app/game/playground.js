@@ -112,7 +112,7 @@
             this.canvas.x = 0;
             this.canvas.y = 0;
 
-            this.canvas.style.background = '#7DC24B';
+            this.canvas.style.background = '#63a00d';
         }
 
         initHive () {
@@ -419,9 +419,7 @@
             }
         }
 
-        removeFlower () {
-            let flower = arguments[0];
-
+        removeFlower (flower) {
             if (flower instanceof GoodFlower) {
                 let index = this.goodFlowers.indexOf(flower);
                 this.goodFlowers.splice(index, 1);

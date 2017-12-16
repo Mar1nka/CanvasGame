@@ -14,7 +14,7 @@
     /*height: calc(100% - 80px);*/
 }
 
-.counter {
+.game-menu {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -48,14 +48,14 @@
 }
 
 .health {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
+     display: flex;
+     justify-content: space-around;
+     align-items: center;
 
-    width: 200px;
-    background: url(../../images/scene/board.png) no-repeat;
-    background-size: auto 60px;
-}
+     width: 200px;
+     background: url(../../images/scene/board.png) no-repeat;
+     background-size: auto 60px;
+ }
 
 .health-value {
     padding: 10px 5px;
@@ -68,6 +68,26 @@
     height: 40px;
 }
 
+.toggle-audio-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: absolute;
+    right: 20px;
+    top: 12px;
+
+    width: 50px;
+    height: 50px;
+    background: url(../../images/scene/audio-icon.png) no-repeat;
+    background-size: auto 50px;
+    cursor: pointer;
+    -webkit-user-select: none;
+}
+
+.toggle-audio-button--disabled {
+    filter: grayscale(80%);
+}
 
 
  /*message*/
